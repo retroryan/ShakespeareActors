@@ -30,7 +30,7 @@ object Application extends Controller {
       import play.api.libs.concurrent.Execution.Implicits._
 
       (shakespeare ? numberMonkeys).mapTo[ShakespeareResult].map {
-        shakespeareResult ⇒
+        shakespeareResult  =>
         // We have a result - make some fancy pantsy presentation of it
           val builder = new StringBuilder
           builder.append("SHAKESPEARE WORDS:\n")

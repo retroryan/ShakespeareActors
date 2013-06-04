@@ -34,14 +34,12 @@ class ShakespeareActor extends Actor {
         context.actorOf(Props[MonkeyWorker]) ? randomGenerator.nextInt(100) mapTo manifest[Set[String]]
       }
 
-      val f = Future.sequence(futures) map {
+      Future.sequence(futures) map {
         wordSets =>
           val mergedSet = wordSets reduce ((a, b) => a ++ b)
           val (shakespeare, unworthy) = mergedSet partition (x => Blueprint.contains(x))
           ShakespeareResult(shakespeare, unworthy)
-      }
-
-      f pipeTo sender
+      } pipeTo sender
   }
 }
 
